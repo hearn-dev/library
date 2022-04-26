@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="constructor.js" defer async></script>
+</head>
+<body>
+    <div class="container">
+        <div class="form-heading">
+            <h1>Add New Book to Library</h1>
+        </div>
+        <div class="books-heading">
+            <h1>Current Books in Library</h1>
+        </div>
+        <div class="form">
+            
+            <form name="newBook" action="" method="GET">
+                <label for="title">Title: </label><br>
+                <input type="text" id="title" name="title"><br>
+                <label for="author">Author: </label><br>
+                <input type="text" id="author" name="author"><br>
+                <label for="pages">Pages: </label><br>
+                <input type="number" id="pages" name="pages"><br>
+                <legend>Read?</legend>
+                    <label for="yes">Yes </label>
+                    <input type="radio" id="yes" name="read">
+                    <label for="no">No </label>
+                    <input type="radio" id="no" name="read"><br>
+                <input type="button" value="Submit">
+            </form>
+        </div>
+        <div class="books"></div>
+    </div>
+    
+</body>
+</html>
