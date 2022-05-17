@@ -1,5 +1,6 @@
 let myLibrary = [];
 
+// Book constructor
 function Book(title, author, pages, read) {
     this.Title = title;
     this.Author = author;
@@ -7,12 +8,14 @@ function Book(title, author, pages, read) {
     this.Read = read;
 }
 
+// Add book to array
 function addBookToLibrary(title, author, pages, read) {
     const newBook = new Book (title, author, pages, read);
     myLibrary.push(newBook);
     displayBooks();
 }
 
+// Remove book from array
 function removeBook(book) {
     const index = findBook(book)
     myLibrary.splice(index, 1);
@@ -21,28 +24,40 @@ function removeBook(book) {
 
 }
 
+// Return index of book in array
 function findBook(book) {
     const isBook = (element) => element.Title == book;
     const index = myLibrary.findIndex(isBook);
     return index;
 }
 
+// Toggle Read status of book
+function toggleRead(book) {
+    const index = findBook(book);
+    myLibrary[index].Read = !myLibrary[index].Read;
+    displayBooks();
+}
+
+// Collect user input from form
 function retrieveData() {
 
     // Retrieve form data 
     const Title = document.querySelector("#Title").value;
     const Author = document.querySelector("#Author").value;
     const Pages = document.querySelector("#Pages").value;
-    if (form.read.checked) {
-        const Read = true;
+    let Read = document.querySelector("#Read").value;
+    if (Read == "Read") {
+        Read = true;
     } else {
-        const Read = false;
+        Read = false;
     }
 
     if (Title=="" || Author=="" || Pages=="") return;
 
+    // Add book from retreived form data
     addBookToLibrary(Title, Author, Pages, Read);
 
+    // Clear form after submission
     const inputs = document.querySelectorAll('#Title, #Author, #Pages, #Read');
 
     inputs.forEach(input => {
@@ -52,6 +67,7 @@ function retrieveData() {
 
 }
 
+// Create cards for books in DOM
 function displayBooks() {
     // Clear Shelf
     removeCards();
@@ -59,10 +75,13 @@ function displayBooks() {
 
     // Create and append cards for each book in myLibrary
     myLibrary.forEach(myLibrary => {
+
+        // Initialize Card
         const card = document.createElement("div");
         card.classList.add("card", "w-25", "m-1", "p-3");
         shelf.appendChild(card);
         
+        // Add data to card from object in array
         for(let key in myLibrary) {
             if (key == "Read") {
                 const read = document.createElement("p")
@@ -78,6 +97,18 @@ function displayBooks() {
             para.textContent = `${key}: ${myLibrary[key]}`
             card.appendChild(para);
         }
+        // Add Read toggle button
+        const readToggle = document.createElement("button");
+        readToggle.classList.add("btn", "btn-outline-success", "mb-1");
+        readToggle.id = myLibrary.Title;
+        readToggle.type = "button";
+        readToggle.textContent = "Toggle Read Status";
+        readToggle.addEventListener("click", function() {
+            toggleRead(this.id);
+        })
+        card.appendChild(readToggle);
+
+        // Add Remove Button
         const remove = document.createElement("button");
         remove.classList.add("btn", "btn-outline-danger");
         remove.id = myLibrary.Title;
@@ -87,9 +118,12 @@ function displayBooks() {
             removeBook(this.id);
         });
         card.appendChild(remove);
+
+
     })
 }
 
+// Remove DOM cards
 function removeCards() {
     let cards = document.getElementsByClassName("card");
 
@@ -98,7 +132,7 @@ function removeCards() {
     }
 }
 
-
+// listener for Submitting form
 const submitButton = document.querySelector("#submit")
 submitButton.addEventListener("click", retrieveData);
 

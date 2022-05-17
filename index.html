@@ -32,10 +32,10 @@
                     <input name="author" class="form-control" type="text" id="Author"><br>
                     <label for="pages">Number of Pages: </label><br>
                     <input name="pages" class="form-control" type="number" id="Pages"><br>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="Read" name="read">
-                        <label class="form-check-label" for="Read">Read?</label>
-                      </div>
+                    <input type="radio" id="Read" name="Read" value="Read">
+                    <label for="Read">Read</label><br>
+                    <input type="radio" id="Not-Read" name="Read" value="Not-Read" checked>
+                    <label for="Not-Read">Not Read</label><br>
                 </div>  
                 <button id="submit" type="button" class="btn btn-primary mt-1">Submit</button>
             </form>
