@@ -1,11 +1,27 @@
 let myLibrary = [];
 
 // Book constructor
-function Book(title, author, pages, read) {
-    this.Title = title;
-    this.Author = author;
-    this.Pages = pages;
-    this.Read = read;
+class Book {
+    constructor(title, author, pages, read) {
+        this.Title = title;
+        this.Author = author;
+        this.Pages = pages;
+        this.Read = read;
+    }
+
+    get title() {
+        return (this._Title)
+    }
+
+    get author() {
+        return (this._Author)
+    }
+
+    get pages() {
+        return (this._Pages)
+    }
+
+
 }
 
 // Add book to array
